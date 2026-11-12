@@ -1,0 +1,21 @@
+{
+  "name": "hive402",
+  "version": "1.0.0",
+  "description": "Paid x402 deep-check endpoint (Base USDC, $0.05/call) for HIVE402",
+  "main": "server.mjs",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@x402/core": "^2.30.0",
+    "@x402/evm": "^2.30.0",
+    "@x402/express": "^2.30.0",
+    "express": "^5.3.0"
+  }
+}
