@@ -15,6 +15,9 @@ test or a contract audit.
   `POST /deep-check` with `{chain, address}`. Unpaid requests get HTTP 402
   with a payment challenge.
 - **Run locally:** `npm install && node server.mjs` (port 4021, or
-  `$PORT` when set — Render assigns the port dynamically).
-- **Deploy:** `render.yaml` defines a free Render web service
-  (`npm install` / `node server.mjs`).
+  `$PORT` when set).
+- **Deploy:** Vercel (Hobby free tier, no card required). Import this
+  repo in Vercel; `vercel.json` routes all paths to the serverless
+  function `api/index.mjs`, which serves the same Express app.
+  (Render was dropped — it requires a credit card on file even for
+  its free tier. `render.yaml` is left in the repo, unused.)

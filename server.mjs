@@ -4,6 +4,7 @@
 // Seller never signs; payTo is the earn wallet (receives Base USDC).
 // Price: $0.05/call. Run: node server.mjs (port 4021).
 import express from "express";
+import { pathToFileURL } from "url";
 import { paymentMiddleware, x402ResourceServer } from "@x402/express";
 import { ExactEvmScheme } from "@x402/evm/exact/server";
 import { HTTPFacilitatorClient } from "@x402/core/server";
@@ -104,5 +105,11 @@ async function handler(req, res) {
 app.get("/deep-check", handler);
 app.post("/deep-check", handler);
 
-const PORT = process.env.PORT || 4021; // Render assigns PORT dynamically; 4021 is the local fallback
-app.listen(PORT, () => console.log(`xampl deep-check listening on :${PORT}`));
+export default app;
+
+// Listen only when run directly (`node server.mjs`). When imported by the
+// Vercel serverless entry (api/index.mjs), the platform serves the app.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const PORT = process.env.PORT || 4021; // hosts assign PORT dynamically; 4021 is the local fallback
+  app.listen(PORT, () => console.log(`xampl deep-check listening on :${PORT}`));
+}
